@@ -97,14 +97,24 @@
                             .accentPalette('customAccent')
                             .warnPalette('customWarn');
 
-                }]).controller('AppController', [AppController]);
+                }]).controller('AppController', ['$state', AppController]);
 
     /**
      * Main Controller for the Angular Material Starter App
      * @constructor
      */
-    function AppController() {
+    function AppController($state) {
         var self = this;
 
+        self.goHome = goHome;
+        self.goSettings = goSettings;
+
+        function goHome() {
+            $state.go('home');
+        }
+
+        function goSettings() {
+            $state.go('settings');
+        }
     }
 })();
