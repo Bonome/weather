@@ -11,22 +11,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Cantarell:400,400italic,700,700italic' type='text/css'>
+        <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
         <link rel="stylesheet" href="assets/css/app.css">
-        <!--<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>-->
     </head>
     <body ng-controller="AppController as appCtrl" ng-cloak>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
 
-        <div ui-view></div>
+    <md-toolbar layout="row" class="md-whiteframe-z1">
+        <img src="assets/logo.png" class="logo"/>
+        <md-button ng-click="appCtrl.goBack()" aria-label="previous state" class="menu previous">
+            Home
+        </md-button>
+        <md-button ng-click="appCtrl.goBack()" aria-label="previous state" class="menu previous">
+            Settings
+        </md-button>
+    </md-toolbar>
 
-        <!-- In production use:
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-        -->
-        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-        <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script type="text/javascript" src="app.js"></script>
-    </body>
+    <div ui-view></div>
+
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    -->
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="components/home/home.js"></script>
+</body>
 </html>

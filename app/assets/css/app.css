@@ -4,3 +4,20 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+
+html, body {
+    font-family: 'Cantarell', sans-serif;
+    font-size:14px;
+    height:100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+md-toolbar h1 {
+    margin: auto;
+}
+
+.logo {
+    height: 48px;
+    margin: 6px 0px 6px 15px;
+}
