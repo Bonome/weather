@@ -1,0 +1,13 @@
+{
+  "name": "Weather_dash",
+  "description": "Weather dashboard shows you a dashboard with the weather of your cities.",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Bonome/weather",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-material": "~0.11.4",
+    "angular-ui-router": "~0.2.15"
+  }
+}
