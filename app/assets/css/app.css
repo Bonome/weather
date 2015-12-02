@@ -13,11 +13,14 @@ html, body {
     padding: 0px;
 }
 
-md-toolbar h1 {
-    margin: auto;
-}
-
 .logo {
     height: 48px;
-    margin: 6px 0px 6px 15px;
+    margin: 6px 0px 6px 20px;
+}
+
+/**
+/* weather icons size
+*/
+i.wi {
+    font-size: 150px;
 }

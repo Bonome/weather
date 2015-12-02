@@ -27,30 +27,75 @@
     angular
             .module('home', [])
             .controller('HomeController', [
-                '$http', '$filter', '$state',
+                '$http', '$filter', '$state', '$mdToast',
                 HomeController
             ]);
 
     /**
-     * Main Controller for the Angular Material Starter App
+     * Controller for the Home page
      * @param $http
      * @param $filter
      * @param $state
+     * @param $mdToast
      * @constructor
      */
-    function HomeController($http, $filter, $state) {
+    function HomeController($http, $filter, $state, $mdToast) {
         var self = this;
 
         self.cities = [];
 
         self.getCities = getCities;
+        self.updateWeather = updateWeather;
 
         (function init() {
-
+            if (self.cities.length <= 0) {
+                self.getCities();
+                self.updateWeather();
+            }
         })();
 
         function getCities() {
-            self.cities = ['Strasbourg'];
+            var citiesSaved = localStorage.getItem('cities');
+            if (citiesSaved != null) {//&& != undefined
+                self.cities = JSON.parse(citiesSaved);
+            } else {
+                self.cities = [
+                    {
+                        'id': '2992166'//Montpellier
+                    },
+                    {
+                        'id': '2973783'//Strasbourg
+                    }
+                ];
+            }
+        }
+
+        function updateWeather() {
+            self.cities.forEach(function (city) {
+                $http.get('http://api.openweathermap.org/data/2.5/weather?id=' + city.id + '&appid=5c8f3d5b713b4a18a56825b420a691d0&lang=en&units=metric')
+                        .success(function (cityWeather) {
+                            city.name = cityWeather.name;
+                            if (cityWeather.sys != null) {// && != undefined
+                                if (cityWeather.dt > cityWeather.sys.sunrise && cityWeather.dt < cityWeather.sys.sunset) {
+                                    city.moment = 'day-';
+                                } else {
+                                    city.moment = 'night-';
+                                }
+                            } else {
+                                city.moment = '';
+                            }
+                            if (Array.isArray(cityWeather.weather) && cityWeather.weather[0] != null) {
+                                city.weather = cityWeather.weather[0].id;
+                                city.desc = cityWeather.weather[0].description;
+                            }else{
+                                city.weather = '';
+                                city.desc = '';
+                            }
+                            city.temp = cityWeather.main.temp;
+                        }).catch(function (err) {
+                    $mdToast.showSimple('Error, no connection !');
+                });
+            });
         }
     }
 
