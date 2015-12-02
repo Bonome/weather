@@ -22,5 +22,64 @@ html, body {
 /* weather icons size
 */
 i.wi {
-    font-size: 150px;
+    font-size: 11em;
+    text-align: center;
+    height: 85%;
+    width: 100%;
+    line-height: normal;
+    color: rgba(0,0,0,0.7);
+}
+
+i.wi-alien {
+    color: #B71C1C;
+}
+
+span.description {
+    text-transform: capitalize;
+    display: block;
+    color: rgba(0, 0, 0, 0.73);
+}
+
+
+
+md-card.city {
+    width: 90%;
+    height: 90%;
+    padding: 5%;
+}
+
+md-card-content {}
+
+md-card md-card-content {
+    padding: 5% 0 0;
+}
+
+.illustration {
+    height: 85%;
+    /*background-color: lightcyan;*/
+    background-color: powderblue;
+}
+
+span.temperature {
+    display: block;
+    text-align: right;
+}
+
+md-card-content span {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.illustration.moment-night {
+    background-color: darkslategrey;
+    /* background-color: midnightblue; */
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.illustration.moment-night i.wi {
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.illustration.moment-night span.description {
+    color: rgba(255, 255, 255, 0.73);
 }

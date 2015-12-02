@@ -22,13 +22,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -->
-<md-grid-list md-cols-sm="2" md-cols-md="4" md-cols-lg="6" md-cols-gt-lg="8" md-row-height="4:5" ui-view class="cities">
+<md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-lg="3" md-cols-gt-lg="4" md-row-height="4:4" ui-view class="cities">
     <md-grid-tile md-colspan="1" ng-repeat="city in home.cities">
         <md-card class="city">
-            <span>{{city.temp}} °C</span>
-            <i class="wi wi-owm-{{city.moment}}{{city.weather}}"></i>
-            <span>{{city.desc}}</span>
-            <span>{{city.name}}</span>
+            <div class="illustration moment{{city.moment}}">
+                <span class="temperature">{{city.temp}}</span>
+                <i class="wi wi-owm{{city.moment}}{{city.weather}}"></i>
+                <span class="description">{{city.desc}}</span>
+            </div>
+            <md-card-content>
+                <span>{{city.name}}</span>
+            </md-card-content>
         </md-card>
     </md-grid-tile>
 </md-grid-list>
