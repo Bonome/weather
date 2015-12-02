@@ -8,7 +8,8 @@
     angular.module('weatherApp', [
         'ngMaterial',
         'ui.router',
-        'home'
+        'home',
+        'settings'
     ])
             .config(['$mdThemingProvider', '$urlRouterProvider', '$stateProvider',
                 function ($mdThemingProvider, $urlRouterProvider, $stateProvider) {
@@ -26,7 +27,10 @@
 
                             // SETTINGS PAGE  ==================================
                             .state('settings', {
-                                url: '/settings'
+                                url: '/settings',
+                                templateUrl: './components/settings/view/settings.html',
+                                controller: 'SettingsController',
+                                controllerAs: 'settings'
                             });
 
                     var customPrimary = {
