@@ -22,25 +22,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -->
-<form autocomplete="on" ng-submit="settings.search()">
-    <md-input-container>
+<form class="search" autocomplete="off" ng-submit="settings.search()">
+    <md-input-container class="search-field">
         <label>City</label>
         <input ng-model="settings.citySearch" ng-enter="settings.search()">
     </md-input-container>
-    <md-button ng-click="settings.search()" aria-label="search city" class="save">
+    <md-button ng-click="settings.search()" aria-label="search city" class="search-button">
         Search
     </md-button>
 </form>
-<md-list>
+<md-list class="search-results">
     <md-list-item ng-repeat="citySearched in settings.citiesSearched">
-        <span ng-click="settings.add(citySearched)">{{citySearched.name}}, {{citySearched.sys.country}}</span>
+        <span ng-click="settings.add(citySearched)">
+            {{citySearched.name}}{{citySearched.sys.country && ', ' + citySearched.sys.country}}
+        </span>
     </md-list-item>
 </md-list>
-<md-list>
+<span class="title">Cities List</span>
+<md-list class="cities-list">
     <md-list-item ng-repeat="city in settings.cities">
         <span>{{city.name}}</span>
     </md-list-item>
 </md-list>
-<md-button ng-click="settings.save()" aria-label="save Settings" class="save">
+<!--<md-button ng-click="settings.save()" aria-label="save Settings" class="save">
     Save
-</md-button>
+</md-button>-->

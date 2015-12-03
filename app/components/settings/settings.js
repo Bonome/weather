@@ -27,7 +27,7 @@
     angular
             .module('settings', [])
             .controller('SettingsController', [
-                '$http', '$mdToast',
+                '$http', '$mdToast', '$element',
                 SettingsController
             ]);
 
@@ -37,7 +37,7 @@
      * @param $mdToast
      * @constructor
      */
-    function SettingsController($http, $mdToast) {
+    function SettingsController($http, $mdToast, $element) {
         var self = this;
 
         self.cities = [];
@@ -53,6 +53,9 @@
             if (self.cities.length <= 0) {
                 self.getCities();
             }
+            $element.bind("keyup", function (evt) {
+                self.search(true);
+            });
         })();
 
         function getCities() {
@@ -63,11 +66,15 @@
                 self.cities = [
                     {
                         'id': '2992166',
-                        'name': 'Montpellier'
+                        'name': 'Montpellier, France'
                     },
                     {
-                        'id': '2973783',
-                        'name': 'Strasbourg'
+                        'id': '0',
+                        'name': 'Strasbourg, Canada'
+                    },
+                    {
+                        'id': '2184707',
+                        'name': 'Wanaka, New Zealand'
                     }
                 ];
             }
@@ -77,20 +84,44 @@
             localStorage.setItem('cities', JSON.stringify(self.cities));
         }
 
-        function search() {
-            $http.get('http://api.openweathermap.org/data/2.5/find?q=' + self.citySearch + '&type=accurate&appid=5c8f3d5b713b4a18a56825b420a691d0')
+        function search(searchInProgress) {
+            var reqParams = {
+                'params': {
+                    'q': self.citySearch,
+                    'appid': '5c8f3d5b713b4a18a56825b420a691d0'
+                }
+            };
+            if (searchInProgress) {
+                reqParams.params.type = 'like';
+            } else {
+                reqParams.params.type = 'accurate';
+            }
+            $http.get('http://api.openweathermap.org/data/2.5/find', reqParams)
                     .success(function (response) {
                         self.citiesSearched = response.list;
-                    }).catch(function (err) {
-                $mdToast.showSimple('Error, no connection !');
-            });
+                        if ((response.list == null && self.citySearch.length > 0) || (response.list != null && response.list.length === 0 && self.citySearch.length > 0)) {//& != undefined
+                            self.citiesSearched = [{
+                                    'id': '-1',
+                                    'name': 'NO RESULTS'
+                                }];
+                        }
+                    })
+                    .catch(function (err) {
+                        $mdToast.showSimple('Error, no connection !');
+                    });
         }
 
         function add(city) {
+            var name = "";
+            if (city.sys != null && city.sys.country != null && city.sys.country !== '') {//& != undefined
+                name = city.name + ', ' + city.sys.country;
+            } else {
+                name = city.name;
+            }
             self.cities.push(
                     {
                         'id': city.id,
-                        'name': city.name
+                        'name': name
                     }
             );
             localStorage.setItem('cities', JSON.stringify(self.cities));
