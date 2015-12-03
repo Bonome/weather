@@ -65,15 +65,15 @@
             } else {
                 self.cities = [
                     {
-                        'id': '2992166',
-                        'name': 'Montpellier, France'
+                        'id': 2992166,
+                        'name': 'Montpellier, FR'
                     },
                     {
-                        'id': '0',
+                        'id': 0,
                         'name': 'Strasbourg, Canada'
                     },
                     {
-                        'id': '2184707',
+                        'id': 2184707,
                         'name': 'Wanaka, New Zealand'
                     }
                 ];
@@ -112,19 +112,35 @@
         }
 
         function add(city) {
+            var name = cityDisplayName(city);
+            var duplicate = false;
+            self.cities.forEach(function (elt) {
+                var eltName = cityDisplayName(elt);
+                if (elt.id === city.id && eltName === name) {
+                    duplicate = true;
+                    $mdToast.showSimple('This city is already in your list !');
+                    return;
+                }
+            });
+            if (!duplicate) {
+                self.cities.push(
+                        {
+                            'id': city.id,
+                            'name': name
+                        }
+                );
+                localStorage.setItem('cities', JSON.stringify(self.cities));
+            }
+        }
+
+        function cityDisplayName(city) {
             var name = "";
             if (city.sys != null && city.sys.country != null && city.sys.country !== '') {//& != undefined
                 name = city.name + ', ' + city.sys.country;
             } else {
                 name = city.name;
             }
-            self.cities.push(
-                    {
-                        'id': city.id,
-                        'name': name
-                    }
-            );
-            localStorage.setItem('cities', JSON.stringify(self.cities));
+            return name;
         }
     }
 
