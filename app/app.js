@@ -101,6 +101,7 @@
                             .accentPalette('customAccent')
                             .warnPalette('customWarn');
 
+                    $mdThemingProvider.theme('delete-toast');
                 }]).controller('AppController', ['$state', AppController]);
 
     /**

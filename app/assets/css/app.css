@@ -14,9 +14,17 @@ html, body {
     overflow: hidden;
 }
 
+.main.ng-scope {
+    overflow: auto;
+    height: -webkit-calc(100% - 64px);
+    height: -o-calc(100% - 64px);
+    height: calc(100% - 64px);
+}
+
 .logo {
     height: 48px;
     margin: 6px 0px 6px 20px;
+    cursor: pointer;
 }
 
 /**
@@ -41,15 +49,11 @@ span.description {
     color: rgba(0, 0, 0, 0.73);
 }
 
-
-
 md-card.city {
     width: 90%;
     height: 90%;
     padding: 5%;
 }
-
-md-card-content {}
 
 md-card md-card-content {
     padding: 5% 0 0;
@@ -88,47 +92,47 @@ md-card-content span {
 }
 
 @media (max-width: 500px) {
-  i.wi {
-    font-size: 11em;
-  }
+    i.wi {
+        font-size: 11em;
+    }
 }
 @media (min-width: 600px) and (max-width: 759px) {
-  i.wi {
-    font-size: 9em;
-    height: 80%;
-  }
+    i.wi {
+        font-size: 9em;
+        height: 80%;
+    }
 }
 @media (min-width: 760px) and (max-width: 890px) {
-  i.wi {
-    font-size: 11em;
-  }
+    i.wi {
+        font-size: 11em;
+    }
 }
 @media (min-width: 960px) and (max-width: 1089px) {
-  i.wi {
-    font-size: 9em;
-    height: 80%;
-  }
+    i.wi {
+        font-size: 9em;
+        height: 80%;
+    }
 }
 @media (min-width: 1090px) and (max-width: 1200px) {
-  i.wi {
-    font-size: 11em;
-  }
+    i.wi {
+        font-size: 11em;
+    }
 }
 @media (min-width: 1200px) and (max-width: 1399px) {
-  i.wi {
-    font-size: 9em;
-    height: 80%;
-  }
+    i.wi {
+        font-size: 9em;
+        height: 80%;
+    }
 }
 @media (min-width: 1400px) and (max-width: 1750px) {
-  i.wi {
-    font-size: 11em;
-  }
+    i.wi {
+        font-size: 11em;
+    }
 }
 @media (min-width: 2400px) {
-  i.wi {
-    font-size: 20em;
-  }
+    i.wi {
+        font-size: 20em;
+    }
 }
 /**
 /* Layout settings page
@@ -141,23 +145,18 @@ md-card-content span {
 }
 
 md-input-container.search-field {
-    /* display: inline-block; */
     width: 70%;
     background-color: rgba(255,255,255,0.16);
     padding-bottom: 7px;
     margin-left: 10%;
     border-radius: 2px;
-    /* padding-top: 10px; */
 }
 
 button.search-button {
-    /* width: 19%; */
     background-color: rgba(255,255,255,0.16);
     margin-top: 0;
     margin-bottom: 0;
 }
-
-.search-field input {/* width: 62%; */}
 
 md-list.search-results {
     background-color: rgba(79, 83, 86,0.3);
@@ -169,7 +168,12 @@ md-list.search-results {
     background-color: rgba(255,255,255,0.5);
 }
 
-md-list-item.md-no-proxy {width: 70%;margin-left: 10%;padding-left: 2px;padding-right: 2px;}
+md-list-item.city-item {
+    width: 70%;
+    margin-left: 10%;
+    padding-left: 2px;
+    padding-right: 2px;
+}
 
 .cities-list md-list-item:nth-child(2n+1) {
     background-color: rgba(0,0,0,0.1);
@@ -180,7 +184,46 @@ span.title.ng-scope {
     margin-left: 10%;
 }
 
-.main.ng-scope {
-    overflow: auto;
-    height: calc(100% - 64px);
+span.item-list-button {
+    margin-left: auto;
+    margin-right: 5px;
+    border-radius: 18px;
+    border: 1px solid rgba(0,0,0,0.5);
+    width: 31px;
+    height: 31px;
+    font-size: 36px;
+    font-weight: 100;
+    line-height: 24px;
+    text-align: center;
+    color: rgba(0,0,0,0.5);
+}
+
+.city-item-container {
+    display: flex;
+    width: 100%;
+    padding: 0 16px;
+    height: inherit;
+    align-items: inherit;
+}
+
+span.add.item-list-button {
+    background-image: url(../plus.png);
+    background-position-x: 5px;
+    background-position-y: 5px;
+    background-repeat: no-repeat;
+}
+
+span.delete.item-list-button {
+    background-image: url(../cross_red.png);
+    background-position-x: 5px;
+    background-position-y: 5px;
+    background-repeat: no-repeat;
+}
+span.delete.item-list-button {
+    border-color: rgb(115,1,1);
+    cursor: pointer;
+}
+
+md-toast.md-delete-toast-theme{
+    background-color: rgb(115,1,1);
 }

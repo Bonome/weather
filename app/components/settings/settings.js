@@ -35,6 +35,7 @@
      * Controller for the Settings page
      * @param $http
      * @param $mdToast
+     * @param $element
      * @constructor
      */
     function SettingsController($http, $mdToast, $element) {
@@ -47,7 +48,8 @@
         self.getCities = getCities;
         self.save = save;
         self.search = search;
-        self.add = add;
+        self.addCity = addCity;
+        self.deleteCity = deleteCity;
 
         (function init() {
             if (self.cities.length <= 0) {
@@ -107,18 +109,28 @@
                         }
                     })
                     .catch(function (err) {
-                        $mdToast.showSimple('Error, no connection !');
+                        var toast = $mdToast.simple()
+                                .content('Error, no network connection !')
+                                .position('top right')
+                                .hideDelay(10000)
+                                .theme("delete-toast");
+                        $mdToast.show(toast);
                     });
         }
 
-        function add(city) {
+        function addCity(city) {
             var name = cityDisplayName(city);
             var duplicate = false;
             self.cities.forEach(function (elt) {
                 var eltName = cityDisplayName(elt);
                 if (elt.id === city.id && eltName === name) {
                     duplicate = true;
-                    $mdToast.showSimple('This city is already in your list !');
+                    var toast = $mdToast.simple()
+                            .content('This city is already in your list !')
+                            .position('top right')
+                            .hideDelay(10000)
+                            .theme("delete-toast");
+                    $mdToast.show(toast);
                     return;
                 }
             });
@@ -130,8 +142,47 @@
                         }
                 );
                 localStorage.setItem('cities', JSON.stringify(self.cities));
+                self.citySearch = "";
+                self.citiesSearched = [];
             }
         }
+
+        function deleteCity(id, name) {
+            if (id === 0 || id === '0') {
+                self.cities.forEach(function (city, index) {
+                    if (city.name === name) {
+                        self.cities.splice(index, 1);
+                        localStorage.setItem('cities', JSON.stringify(self.cities));
+                        showConfirmDelete(city, index);
+                    }
+                });
+            } else {
+                self.cities.forEach(function (city, index) {
+                    if (city.id === id) {
+                        self.cities.splice(index, 1);
+                        localStorage.setItem('cities', JSON.stringify(self.cities));
+                        showConfirmDelete(city, index);
+                    }
+                });
+            }
+        }
+
+        function showConfirmDelete(city, index) {
+            var toast = $mdToast.simple()
+                    .content('You just delete the city of ' + city.name + '. Do you want to revert this city ?')
+                    .action('Revert')
+                    .highlightAction(true)
+                    .position('top right')
+                    .hideDelay(20000)
+                    .theme("delete-toast");
+            $mdToast.show(toast).then(function (response) {
+                if (response === 'ok') {
+                    self.cities.splice(index, 0, city);
+                    localStorage.setItem('cities', JSON.stringify(self.cities));
+                }
+            });
+        }
+        ;
 
         function cityDisplayName(city) {
             var name = "";

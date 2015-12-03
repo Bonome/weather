@@ -32,16 +32,28 @@ THE SOFTWARE.
     </md-button>
 </form>
 <md-list class="search-results">
-    <md-list-item ng-repeat="citySearched in settings.citiesSearched">
-        <span ng-click="settings.add(citySearched)">
+    <md-list-item class="city-item" ng-click="settings.addCity(citySearched)" ng-repeat="citySearched in settings.citiesSearched">
+        <span>
             {{citySearched.name}}{{citySearched.sys.country && ', ' + citySearched.sys.country}}
+        </span>
+        <span class="{{citySearched.sys.country && 'add'}} item-list-button">
+            <md-tooltip md-direction="left">
+                Add city of {{citySearched.name}}.
+            </md-tooltip>
         </span>
     </md-list-item>
 </md-list>
 <span class="title">Cities List</span>
 <md-list class="cities-list">
-    <md-list-item ng-repeat="city in settings.cities">
-        <span>{{city.name}}</span>
+    <md-list-item class="city-item" ng-repeat="city in settings.cities">
+        <div class="city-item-container">
+            <span>{{city.name}}</span>
+            <span class="delete item-list-button" ng-click="settings.deleteCity(city.id, city.name)">
+                <md-tooltip md-direction="left">
+                    Delete city of {{city.name}}.
+                </md-tooltip>
+            </span>
+        </div>
     </md-list-item>
 </md-list>
 <!--<md-button ng-click="settings.save()" aria-label="save Settings" class="save">
