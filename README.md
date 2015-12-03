@@ -1,7 +1,7 @@
 # Weather dashboard
 
-This project is an application weather dasboard web app.
-You can add a city and the weather and temperature of all cities on the dash.
+This project is a weather dasboard web app.
+You can add a city and the weather and temperature of all cities will be displayed on the dash.
 
 
 ## Getting Started
@@ -41,6 +41,10 @@ folders in your project.
 * `node_modules` - contains the npm packages for the tools we need
 * `app/bower_components` - contains the angular framework files
 
+Or 
+
+  You can just run bower and link the repository to your www/ apache directory.
+
 *Note that the `bower_components` folder would normally be installed in the root folder but
 weather_dash changes this location through the `.bowerrc` file.  Putting it in the app folder makes
 it easier to serve the files by a webserver.*
@@ -56,4 +60,6 @@ npm start
 
 Now browse to the app at `http://localhost:8000/app/index.html`.
 
-You can also make symbolic link of the repository to your apache directory and browse at `http://localhost/weather_dash/app/index.html`.
+Or
+
+Browse at `http://localhost/weather_dash/app/index.html`.
