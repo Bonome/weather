@@ -62,11 +62,15 @@
                 self.cities = [
                     {
                         'id': '2992166',
-                        'name': 'Montpellier'
+                        'name': 'Montpellier, France'
                     },
                     {
-                        'id': '2973783',
-                        'name': 'Strasbourg'
+                        'id': '0',
+                        'name': 'Strasbourg, Canada'
+                    },
+                    {
+                        'id': '2184707',
+                        'name': 'Wanaka, New Zealand'
                     }
                 ];
             }
@@ -81,7 +85,7 @@
                         'units': 'metric'
                     }
                 };
-                if (city.id !== 0) {
+                if (city.id !== 0 && city.id !== '0') {
                     reqParam.params.id = city.id;
                 } else {
                     reqParam.params.q = city.name;
