@@ -208,15 +208,13 @@ span.item-list-button {
 
 span.add.item-list-button {
     background-image: url(../plus.png);
-    background-position-x: 5px;
-    background-position-y: 5px;
+    background-position: 5px 5px;
     background-repeat: no-repeat;
 }
 
 span.delete.item-list-button {
     background-image: url(../cross_red.png);
-    background-position-x: 5px;
-    background-position-y: 5px;
+    background-position: 5px 5px;
     background-repeat: no-repeat;
 }
 span.delete.item-list-button {
