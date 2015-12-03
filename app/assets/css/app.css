@@ -37,6 +37,7 @@ i.wi {
     width: 100%;
     line-height: normal;
     color: rgba(0,0,0,0.7);
+    display: block;
 }
 
 i.wi-alien {
@@ -75,6 +76,10 @@ span.temperature {
 md-card-content span {
     font-weight: bold;
     font-size: 1.5em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
 }
 
 .illustration.moment-night {
@@ -89,6 +94,10 @@ md-card-content span {
 
 .illustration.moment-night span.description {
     color: rgba(255, 255, 255, 0.73);
+    background-color: darkslategrey;
+}
+.illustration.moment-day span.description {
+    background-color: powderblue;
 }
 
 @media (max-width: 500px) {
@@ -99,7 +108,6 @@ md-card-content span {
 @media (min-width: 600px) and (max-width: 759px) {
     i.wi {
         font-size: 9em;
-        height: 80%;
     }
 }
 @media (min-width: 760px) and (max-width: 890px) {
@@ -110,7 +118,6 @@ md-card-content span {
 @media (min-width: 960px) and (max-width: 1089px) {
     i.wi {
         font-size: 9em;
-        height: 80%;
     }
 }
 @media (min-width: 1090px) and (max-width: 1200px) {
@@ -121,7 +128,6 @@ md-card-content span {
 @media (min-width: 1200px) and (max-width: 1399px) {
     i.wi {
         font-size: 9em;
-        height: 80%;
     }
 }
 @media (min-width: 1400px) and (max-width: 1750px) {
