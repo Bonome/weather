@@ -45,7 +45,7 @@ THE SOFTWARE.
 </md-list>
 <span class="title">Cities List</span>
 <md-list class="cities-list">
-    <md-list-item class="city-item" ng-repeat="city in settings.cities">
+    <md-list-item class="city-item" ng-repeat="city in settings.cities track by $index">
         <div class="city-item-container">
             <span>{{city.name}}</span>
             <span class="delete item-list-button" ng-click="settings.deleteCity(city.id, city.name)">
