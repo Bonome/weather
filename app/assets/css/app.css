@@ -71,6 +71,7 @@ span.temperature {
     text-align: right;    
     font-size: large;
     padding-right: 5px;
+    height: 10%;
 }
 
 md-card-content span {

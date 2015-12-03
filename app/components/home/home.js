@@ -119,7 +119,7 @@
             city.weather = ' wi-alien';
             city.desc = 'Error retrieving weather info !';
         }
-        if (cityWeather.main != null) {// & != undefined
+        if (cityWeather.main != null && cityWeather.main.temp != null) {// & != undefined
             city.temp = cityWeather.main.temp + '°C';
         } else {
             city.temp = '';
